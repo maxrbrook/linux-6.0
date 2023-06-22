@@ -49,6 +49,13 @@
 		regulator-max-microvolt = <5000000>;
 		regulator-always-on;
 	};
+	reg_vcc3v3: vcc3v3 {
+		compatible = "regulator-fixed";
+		regulator-name = "vcc-3v3";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		regulator-always-on;
+	};
 };
 
 &emac0 {
@@ -70,7 +77,7 @@
 };
 
 &mmc0 {
-	vmmc-supply = <&reg_dcdce>;
+	vmmc-supply = <&reg_vcc3v3>;
 	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>;	/* PF6 */
 	bus-width = <4>;
 	status = "okay";
@@ -185,11 +192,11 @@
 };
 
 &pio {
-	vcc-pc-supply = <&reg_aldo1>;
-	vcc-pf-supply = <&reg_aldo1>;
-	vcc-pg-supply = <&reg_bldo1>;
-	vcc-ph-supply = <&reg_aldo1>;
-	vcc-pi-supply = <&reg_aldo1>;
+	vcc-pc-supply = <&reg_vcc3v3>;
+	vcc-pf-supply = <&reg_vcc3v3>;
+	vcc-pg-supply = <&reg_vcc3v3>;
+	vcc-ph-supply = <&reg_vcc3v3>;
+	vcc-pi-supply = <&reg_vcc3v3>;
 };
 
 &spi0  {
